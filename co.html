@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .checkout-form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .price-display {
+            margin: 15px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .submit-button:hover {
+            background-color: #218838;
+        }
+        @media (max-width: 600px) {
+            .checkout-form {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-form">
+        <h2>Checkout</h2>
+        <form id="checkoutForm">
+            <div class="form-group">
+                <label for="name">Name & Surname</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="cellphone">Cellphone Number</label>
+                <input type="tel" id="cellphone" name="cellphone" required>
+            </div>
+            <div class="form-group">
+                <label for="product">Select Product/Service</label>
+                <select id="product" name="product" required>
+                    <option value="" disabled selected>Select a product/service</option>
+                    <option value="100">Product A - $100</option>
+                    <option value="200">Product B - $200</option>
+                    <option value="300">Product C - $300</option>
+                </select>
+            </div>
+            <div class="price-display" id="priceDisplay">Total Price: $0.00</div>
+            <button type="submit" class="submit-button">Complete Purchase</button>
+        </form>
+    </div>
+
+    <script>
+        const productSelect = document.getElementById('product');
+        const priceDisplay = document.getElementById('priceDisplay');
+
+        productSelect.addEventListener('change', function() {
+            const price = parseFloat(this.value);
+            priceDisplay.textContent = `Total Price: $${price.toFixed(2)}`;
+        });
+
+        document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Purchase will be completed shortly!');
+            // Here you can add further processing, like sending data to a server
+        });
+    </script>
+
+</body>
+</html>
